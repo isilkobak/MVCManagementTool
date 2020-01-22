@@ -1,0 +1,38 @@
+﻿@model List<AdminUI.Models.EntityFramework.Personel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Yeni Personel", "Yeni", null,new {@class="btn btn-success" }) @*view -> controller,action(Yeni)->model->controller,action(Yeni) -> view(PersonelForm) = MVC*@
+<h2>Personel Telefon Rehberi</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Telefon Numarası</th>
+            <th>Departman</th>
+            <th>Yöneticilik Durumu</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var personel in Model)
+        {
+        <tr>
+            <td>@personel.Id</td>
+            <td>@personel.Ad</td>
+            <td>@personel.Soyad</td>
+            <td>@personel.Telefon</td>
+            <td>@personel.Departman.Ad</td>
+            <td>@(personel.YoneticiMi==true?"Yönetici":"")</td>
+            <td>@Html.ActionLink("Güncelle", "Guncelle", new { id = personel.Id }, new { @class = "btn btn-success" })</td>
+            <td>@Html.ActionLink("Sil", "Sil", new { id = personel.Id }, new { @class = "btn btn-danger" })</td>
+        </tr>
+        }
+    </tbody>
+</table>

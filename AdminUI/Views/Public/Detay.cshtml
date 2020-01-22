@@ -1,0 +1,80 @@
+﻿@model AdminUI.Models.EntityFramework.Personel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detay</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Slider - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+  $( function() {
+    $( "#slider" ).slider();
+  } );
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h4>Personel</h4>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Telefon</th>
+                    <th>Departman</th>
+                    <th>Yoneticilik Durumu</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Id</td>
+                    <td>@Model.Ad</td>
+                    <td>@Model.Soyad</td>
+                    <td>@Model.Telefon</td>
+                    <td>@Model.Departman.Ad</td>
+                    <td>@(Model.YoneticiMi == true ? "Yönetici" : "")</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        @foreach (var fotograf in Model.Fotograf)
+        {
+            <dl class="dl-horizontal">
+                <dd>
+                    <div id="slider">
+
+                        <img src="@fotograf.Fotograf1" height="250" width="250" />
+                    </div>
+
+
+                </dd>
+            </dl>
+
+        }
+
+
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    <p>
+        @Html.HiddenFor(m => m.Id)
+        
+    </p>
+</body>
+</html>

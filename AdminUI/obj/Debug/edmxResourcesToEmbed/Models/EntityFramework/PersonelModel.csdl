@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonelDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PersonelDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departman" EntityType="PersonelDbModel.Departman" />
+    <EntitySet Name="Personel" EntityType="PersonelDbModel.Personel" />
+    <AssociationSet Name="FK_Personel_ToTable" Association="PersonelDbModel.FK_Personel_ToTable">
+      <End Role="Departman" EntitySet="Departman" />
+      <End Role="Personel" EntitySet="Personel" />
+    </AssociationSet>
+    <EntitySet Name="Kullanici" EntityType="PersonelDbModel.Kullanici" />
+    <EntitySet Name="Fotograf" EntityType="PersonelDbModel.Fotograf" />
+    <AssociationSet Name="FK_Fotograf_ToPersonel" Association="PersonelDbModel.FK_Fotograf_ToPersonel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="Fotograf" EntitySet="Fotograf" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Departman">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Personel" Relationship="PersonelDbModel.FK_Personel_ToTable" FromRole="Departman" ToRole="Personel" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmanId" Type="Int32" Nullable="false" />
+    <Property Name="YoneticiId" Type="Int32" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="YoneticiMi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Departman" Relationship="PersonelDbModel.FK_Personel_ToTable" FromRole="Personel" ToRole="Departman" />
+    <NavigationProperty Name="Fotograf" Relationship="PersonelDbModel.FK_Fotograf_ToPersonel" FromRole="Personel" ToRole="Fotograf" />
+  </EntityType>
+  <Association Name="FK_Personel_ToTable">
+    <End Type="PersonelDbModel.Departman" Role="Departman" Multiplicity="1" />
+    <End Type="PersonelDbModel.Personel" Role="Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departman">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Personel">
+        <PropertyRef Name="DepartmanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Fotograf">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PersonelId" Type="Int32" Nullable="false" />
+    <Property Name="Fotograf1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Personel" Relationship="PersonelDbModel.FK_Fotograf_ToPersonel" FromRole="Fotograf" ToRole="Personel" />
+  </EntityType>
+  <Association Name="FK_Fotograf_ToPersonel">
+    <End Type="PersonelDbModel.Personel" Role="Personel" Multiplicity="1" />
+    <End Type="PersonelDbModel.Fotograf" Role="Fotograf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fotograf">
+        <PropertyRef Name="PersonelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

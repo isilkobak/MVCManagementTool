@@ -1,0 +1,54 @@
+﻿@model List<AdminUI.Models.EntityFramework.Personel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Personel Telefon Rehberi</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/Security/Login">Admin Girişi Yap</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Personel Telefon Rehberi</h2>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Telefon Numarası</th>
+                    <th>Detay</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var personel in Model)
+                {
+                <tr>
+                    <td>@personel.Ad</td>
+                    <td>@personel.Soyad</td>
+                    <td>@personel.Telefon</td>
+                    <td>@Html.ActionLink("Detay", "Detay", new { id = personel.Id }, new { @class = "btn btn-success" })</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

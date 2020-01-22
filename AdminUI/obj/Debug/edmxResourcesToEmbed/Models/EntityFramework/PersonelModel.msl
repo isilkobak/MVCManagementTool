@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PersonelDbModelStoreContainer" CdmEntityContainer="PersonelDbEntities">
+    <EntitySetMapping Name="Departman">
+      <EntityTypeMapping TypeName="PersonelDbModel.Departman">
+        <MappingFragment StoreEntitySet="Departman">
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="PersonelDbModel.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="YoneticiMi" ColumnName="YoneticiMi" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="YoneticiId" ColumnName="YoneticiId" />
+          <ScalarProperty Name="DepartmanId" ColumnName="DepartmanId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanici">
+      <EntityTypeMapping TypeName="PersonelDbModel.Kullanici">
+        <MappingFragment StoreEntitySet="Kullanici">
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fotograf">
+      <EntityTypeMapping TypeName="PersonelDbModel.Fotograf">
+        <MappingFragment StoreEntitySet="Fotograf">
+          <ScalarProperty Name="Fotograf1" ColumnName="Fotograf" />
+          <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
